@@ -25,8 +25,8 @@ export class RegisterService {
     console.log("Name: " + name)
     return this.httpClient.post(this.apiURL + 'add/',
     {
-      name : name,
       username : username,
+      name : name,
       password : password
     }, this.httpOptions)
     .pipe( catchError(this.handleError));
