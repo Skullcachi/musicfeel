@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 
 const app = express();
+var cors = require('cors');
 
 //Importando Rutas
 
@@ -23,6 +24,8 @@ app.use(myConnection(mysql, {
     port: 3306,
     database: 'baseprueba'
 }, 'single'));
+
+app.use(cors());
 
 app.use(express.urlencoded({extended: false}));
 
