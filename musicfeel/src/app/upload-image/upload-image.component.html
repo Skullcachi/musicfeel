@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Login form -->
+      <div class="sidenav">
+        <div class="login-main-text">
+           <h2>MusicFeel<br> Upload Page</h2>
+           <p>Upload an image of yourself so we can know how are you feeling and recommend the best songs for your to listen with your current mood.</p>
+        </div>
+     </div>
+     
+    </div>
+  </div>
+  <div class="row">
+      <div class="main">
+          <div class="col-md-6">
+             <div *ngIf="selectedFile" class="img-preview-container">            
+                 <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+                   <div class="img-spinning-circle"></div>
+                 </div>
+               
+                 <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success text-center"> Image Uploaded Succesfuly!</div>
+                 <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger text-center"> Image Upload Failed!</div>
+   
+                 
+                 <div class="bg-info">
+                   <img id="userImage" src="" alt="Imagen">
+                 </div>
+             </div>
+          </div>
+           <div class="col-md-6">
+              <div class="login-form">
+                 <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                       <label>Sube tu imagen:</label>
+                       <input #imageInput
+                               type="file"
+                               accept="image/*"
+                               (change)="processFile(imageInput)">
+                    </div>
+                    <button type="submit" class="btn btn-info">Upload</button>
+                 </form>
+              </div>
+           </div>
+        </div>
+  </div>
+</div>
