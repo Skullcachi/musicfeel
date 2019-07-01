@@ -9,7 +9,8 @@ request(url, function (err, response, body) {
     console.log('error:', error);
   } else {
     let weather = JSON.parse(body)
-    let message = `La temperatura es ${weather.main.temp} en ${weather.name}!`;
+  //  let main = JSON.parse(weather.main)
+    let message = `La temperatura es ${weather.main.temp} en ${weather.name} con clima ${weather.weather[0].main}!`;
     console.log(message);
   }
 });
