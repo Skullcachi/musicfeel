@@ -7,6 +7,7 @@ const cors = require('cors');
 
 
 const app = express();
+var cors = require('cors');
 
 //Importando Rutas
 
@@ -26,6 +27,8 @@ app.use(myConnection(mysql, {
     port: 3306,
     database: 'musicFeelLocal'
 }, 'single'));
+
+app.use(cors());
 
 app.use(express.urlencoded({extended: false}));
 
