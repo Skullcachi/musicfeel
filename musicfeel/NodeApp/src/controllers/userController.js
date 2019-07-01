@@ -16,12 +16,17 @@ controller.list = (req, res) => {
 }
 
 controller.save = (req, res) => {
+    console.log(req.body);
     const data = req.body;
-
+    console.log("-------------");
+    console.log(data);
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO usuario set ?',[data], (err, usuario) => {
             console.log(usuario);
-            res.send('works');
+            //res.send('works');
+            return res.status(200).send({
+                usuario
+            });
         });
     });
 }

@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit {
       let formData = this.registerForm.value;
       console.log(formData);
       this.registerService.createUser(formData.username, formData.password, formData.name).subscribe((res)=>{
-        console.log("User create succesfully.");
+        console.log(res);
+        console.log("User created succesfully.");
         this.route.navigate(["/login"]);
       }, (err) => {
         console.log(err);
