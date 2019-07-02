@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Login form -->
+        <div class="sidenav">
+          <div class="login-main-text">
+             <h2>MusicFeel<br> Dashboard</h2>
+             <p>Choose what to do</p>
+          </div>
+       </div>
+       <div class="main">
+         <div class="row">
+           <div class="col-md-3">
+             <button class="btn btn-info" (click)="getWeather()">Get Weather</button>
+           </div>
+           <div class="col-md-3">
+             <button class="btn btn-info" (click)="uploadPhoto()">UploadPhoto</button>
+           </div>
+         </div>
+          <div class="row">
+            <div class="col-md-10">
+              <div class="weather-container">
+                <h2>The current weather is: <span id="weather-value"></span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6"></div>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
