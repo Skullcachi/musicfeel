@@ -49,6 +49,7 @@ controller.login = (req, res) => {
             if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
             {
                 res.status(200).send(usuarios[0].id);
+                console.log(usuarios[0].id);
             }
             else
             {
@@ -58,8 +59,10 @@ controller.login = (req, res) => {
 
         });
      });
-
+     
 }
+
+
 
 
 
