@@ -1,7 +1,8 @@
 const controller = {};
 
 controller.list = (req, res) => {
-    req.getConnection((err, conn) =>{
+    res.render('usuarios');
+    /*req.getConnection((err, conn) =>{
        conn.query('Select * FROM usuario', (err, usuarios) => {
            if(err)
            {
@@ -12,7 +13,7 @@ controller.list = (req, res) => {
                data: usuarios
            })
        });
-    });
+    });*/
 }
 
 controller.save = (req, res) => {
@@ -30,6 +31,36 @@ controller.save = (req, res) => {
         });
     });
 }
+
+controller.login = (req, res) => {
+  //  console.log(req.body);
+    //console.log(req.body.username);
+
+    req.getConnection((err, conn) =>{
+
+        //SELECT column1, column2, ...FROM table_name WHERE condition;
+        conn.query('Select username, password FROM user where username = ?', [req.body.username],(err, usuarios) => {
+            if(err)
+            {
+                res.json(err);
+            }
+            console.log(usuarios);
+            
+            if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
+            {
+                res.status(200).send(usuarios[0].id);
+            }
+            else
+            {
+                console.log('Contraseña Error');
+                res.status(400).send('Contraseña Erronea');
+            }
+
+        });
+     });
+
+}
+
 
 
 module.exports = controller;
