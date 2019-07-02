@@ -13,7 +13,7 @@ router.post('/', function(req, res) {
       return res.status(422).send({errors: [{title: 'File Upload Error', detail: err.message}] });
     }
 
-    return res.json({'imageUrl': req.file.location});
+    return res.json({'imageUrl': req.file.key});
   });
 });
 

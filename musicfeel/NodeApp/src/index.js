@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+const cors = require('cors');
 
 const app = express();
 
