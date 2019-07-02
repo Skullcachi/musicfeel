@@ -22,11 +22,11 @@ controller.save = (req, res) => {
     console.log("-------------");
     console.log(data);
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO usuario set ?',[data], (err, usuario) => {
-            console.log(usuario);
+        conn.query('INSERT INTO user set ?',[data], (err, rows) => {
+            console.log(rows);
             //res.send('works');
             return res.status(200).send({
-                usuario
+                rows
             });
         });
     });

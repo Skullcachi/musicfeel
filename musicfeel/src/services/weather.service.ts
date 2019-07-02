@@ -6,13 +6,13 @@ import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class WeatherService {
 
   apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
-  public createUser(username:string, password:string, name:string)
+  public getCurrentWeather()
   {
     this.httpOptions = {
 			headers: new HttpHeaders({
@@ -20,15 +20,7 @@ export class RegisterService {
 			'Content-Type': 'application/json'
 			})
 		};
-    console.log("Usuario: " + username)
-    console.log("Password: " + password)
-    console.log("Name: " + name)
-    return this.httpClient.post(this.apiURL + 'add/',
-    {
-      username : username,
-      name : name,
-      password : password
-    }, this.httpOptions)
+    return this.httpClient.get(this.apiURL + 'getCurrentWeather', this.httpOptions)
     .pipe( catchError(this.handleError));
   }
   
@@ -49,4 +41,3 @@ export class RegisterService {
     return throwError(error.error.error);
   };
 }
-
