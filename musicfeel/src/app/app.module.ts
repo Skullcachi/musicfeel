@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'uploadImage',
     component: UploadImageComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   }
 ];
 
@@ -36,7 +41,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
