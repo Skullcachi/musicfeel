@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { PhotoService } from 'src/services/photo.service';
+import { Router } from '@angular/router';
 
 class ImageSnippet {
   pending: boolean = false;
@@ -14,7 +16,10 @@ class ImageSnippet {
 export class UploadImageComponent implements OnInit {
 
   selectedFile: ImageSnippet;
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(
+    private cdRef:ChangeDetectorRef,
+    private photoService:PhotoService,
+    private route:Router) { }
 
   ngOnInit() {
   }
@@ -57,16 +62,14 @@ export class UploadImageComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
-  /* onSubmit()
+  uploadPhoto()
   {
-    const formData = new FormData();
-    formData.append('file', this.fileData);
-    var image = document.getElementById("userImage")
-    query
-    /* this.http.post('url/to/your/api', formData)
-      .subscribe(res => {
-        console.log(res);
-        alert('SUCCESS !!');
-      }) 
-  } */
+    this.photoService.upload(this.selectedFile).subscribe((res)=>{
+      console.log(res);
+      console.log("image uploaded succesfully.");
+      /* this.route.navigate(["/dashboard"]); */
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }

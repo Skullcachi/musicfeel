@@ -39,22 +39,25 @@ controller.login = (req, res) => {
     req.getConnection((err, conn) =>{
 
         //SELECT column1, column2, ...FROM table_name WHERE condition;
-        conn.query('Select username, password FROM user where username = ?', [req.body.username],(err, usuarios) => {
+        conn.query('Select id, username, password FROM user where username = ?', [req.body.username],(err, usuarios) => {
             if(err)
             {
                 res.json(err);
             }
             console.log(usuarios);
-            
+            let ok = "ok";
             if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
             {
                 res.status(200).send(usuarios[0].id);
                 console.log(usuarios[0].id);
+                let user_id = usuarios[0].id;
+                console.log("entro a la condicion de cristian");
+                return res.status(200).send({ user_id });
             }
             else
             {
                 console.log('Contraseña Error');
-                res.status(400).send('Contraseña Erronea');
+                return res.status(400).send('Contraseña Erronea');
             }
 
         });
