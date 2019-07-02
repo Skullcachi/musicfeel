@@ -11,6 +11,7 @@ var cors = require('cors');
 
 const userRuotes = require('./routes/usuario');
 const rekognitionRoute = require('./routes/rekognition');
+const fileRoute = require('./routes/file-upload');
 
 
 app.set('port', process.env.PORT || 3000);
@@ -34,6 +35,7 @@ app.use(express.urlencoded({extended: false}));
 //Rutas 
 app.use('/', userRuotes);
 app.use('/rekognition/', rekognitionRoute);
+app.use('/file-upload/', fileRoute);
 
 //staticFiles
 app.use(express.static(path.join(__dirname, 'public')));
