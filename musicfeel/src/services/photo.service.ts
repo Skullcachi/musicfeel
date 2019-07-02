@@ -3,16 +3,18 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class PhotoService {
 
+  
   apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
-  public login(username:string, password:string)
+  public upload(photo)
   {
     this.httpOptions = {
 			headers: new HttpHeaders({
@@ -20,16 +22,14 @@ export class LoginService {
 			'Content-Type': 'application/json'
 			})
 		};
-    console.log("Usuario: " + username)
-    console.log("Password: " + password)
-    return this.httpClient.post(this.apiURL + 'login',
+    console.log("Photo: " + photo);
+    return this.httpClient.post(this.apiURL + 'file-upload',
     {
-      username : username,
-      password : password
+      image : photo,
     }, this.httpOptions)
     .pipe( catchError(this.handleError));
   }
-  
+
   private handleError(error: HttpErrorResponse) 
   {
     console.log(error);
