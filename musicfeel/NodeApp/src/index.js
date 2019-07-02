@@ -4,10 +4,11 @@ const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 const cors = require('cors');
+var bodyParser = require('body-parser');
 
 
 const app = express();
-var cors = require('cors');
+
 
 //Importando Rutas
 
@@ -30,7 +31,9 @@ app.use(myConnection(mysql, {
 
 app.use(cors());
 
-app.use(express.urlencoded({extended: false}));
+//app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 //Rutas 
 app.use('/', userRuotes);
