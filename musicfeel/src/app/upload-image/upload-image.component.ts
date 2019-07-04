@@ -62,6 +62,8 @@ export class UploadImageComponent implements OnInit {
   onSubmit()
   {
     this.isLoading = true;
+    
+    localStorage.removeItem("emotion");
     this.photoService.upload(this.selectedFile2).subscribe((res)=>{
       console.log(res);
       console.log("image uploaded succesfully.");
@@ -79,7 +81,9 @@ export class UploadImageComponent implements OnInit {
               "external_url": res["tracks"]["0"].external_urls.spotify,
               "album": res["tracks"]["0"].album.album_type,
               "href": res["tracks"]["0"].href,
-              "userid": localStorage.getItem("user_id")
+              "userid": localStorage.getItem("user_id"),
+              "emotion": localStorage.getItem("emotion"),
+              "weather": localStorage.getItem("weather")
             }
             console.log(recommended);
             this.recommendations.storeRecommendation(recommended).subscribe((res)=>{

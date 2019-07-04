@@ -79,7 +79,8 @@ export class DashboardComponent implements OnInit {
       for(var i =0; i <= recommended.length - 1 ; i++){
         cells.push(recommended.id);
         cells.push(recommended.name);
-        cells.push(recommended.album);
+        cells.push(recommended.emotion);
+        cells.push(recommended.weather);
         cells.push(recommended.href);
         cells.push(recommended.external_url);
       }

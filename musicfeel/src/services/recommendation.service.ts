@@ -40,7 +40,9 @@ export class RecommendationService {
       external_url : recommendations.external_url,
       href : recommendations.href,
       name : recommendations.name,
-      userid : recommendations.userid
+      userid : recommendations.userid,
+      emotion: recommendations.emotion,
+      weather: localStorage.weather
     }, this.httpOptions)
     .pipe( catchError(this.handleError));
   }
@@ -62,10 +64,10 @@ export class RecommendationService {
     
     let targets = this.calcularValor(emotion, weather);
     let targetsJson = {
-      target_acousticness : targets[0],
-      target_danceability : targets[1],
-      target_instrumentalness : targets[2],
-      target_tempo : targets[3],
+      target_danceability : targets[0],
+      target_tempo : targets[1],
+      target_acousticness : targets[2],
+      target_energy : targets[3],
       target_valence : targets[4]
     }
     let params = new HttpParams().set("target_acousticness",targets[0].toString())
@@ -77,7 +79,7 @@ export class RecommendationService {
     return this.httpClient.get("https://api.spotify.com/v1/recommendations?"
     + "target_acousticness="  + targetsJson.target_acousticness + "&"
     + "target_danceability="  + targetsJson.target_danceability + "&"
-    + "target_instrumentalness="  + targetsJson.target_instrumentalness + "&"
+    + "target_energy="  + targetsJson.target_energy + "&"
     + "target_tempo="  + targetsJson.target_tempo + "&"
     + "target_valence="  + targetsJson.target_valence + "&"
     + "seed_artists=4NHQUGzhtTLFvgF5SZesLK" + "&"
