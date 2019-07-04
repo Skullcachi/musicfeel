@@ -35,6 +35,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 //Rutas 
+
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
 app.use('/', userRuotes);
 app.use('/rekognition/', rekognitionRoute);
 app.use('/file-upload/', fileRoute);

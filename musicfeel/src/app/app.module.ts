@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SpotifyComponent } from './spotify/spotify.component';
+
 
 
 
@@ -33,7 +35,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
-  }
+  },
+  {
+    path: 'spotify',
+    component: SpotifyComponent
+  },
 ];
 
 @NgModule({
@@ -42,7 +48,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     UploadImageComponent,
-    DashboardComponent
+    DashboardComponent,
+    SpotifyComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +57,9 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+  ],  
+  providers: [
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

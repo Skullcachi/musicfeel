@@ -12,6 +12,14 @@
     </div>
   </div>
   <div class="row">
+     <div class="main">
+        <div class="col-md-12">
+           <br><br>
+           <button class="btn btn-danger" (click)="back()">Go back</button>
+        </div>
+     </div>
+  </div>
+  <div class="row">
       <div class="main">
           <div class="col-md-6">
              <div *ngIf="selectedFile" class="img-preview-container">            
@@ -38,7 +46,8 @@
                                accept="image/*"
                                (change)="processFile(imageInput)">
                     </div>
-                    <button type="submit" class="btn btn-info">Upload</button>
+                    <button type="submit" class="btn btn-info" *ngIf="!isLoading">Upload</button>
+                    <h3 *ngIf="isLoading">We are getting your spotify recommendations...</h3>
                  </form>
               </div>
            </div>

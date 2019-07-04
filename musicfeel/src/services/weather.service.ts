@@ -20,7 +20,7 @@ export class WeatherService {
 			'Content-Type': 'application/json'
 			})
 		};
-    return this.httpClient.get(this.apiURL + 'getCurrentWeather', this.httpOptions)
+    return this.httpClient.get(this.apiURL + 'api/getCurrentWeather', this.httpOptions)
     .pipe( catchError(this.handleError));
   }
   
