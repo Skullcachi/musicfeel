@@ -65,7 +65,68 @@ controller.login = (req, res) => {
      
 }
 
+controller.delete = (req, res) => {
 
+    const id = req.body.id;
+    console.log(req.body);
+
+    req.getConnection((err,conn) => {
+        conn.query('Delete From user where id = ?', [id], (err, rows) => {
+            console.log('Usuario Eliminado');
+        });
+    });
+}
+
+controller.update = (req, res) => {
+    
+}
+
+controller.getRecommendations = (req, res) => {
+const id = req.params.id;
+    
+    //console.log(id);
+    req.getConnection((err, conn) => {
+        conn.query('Select * FROM recommendations where userid = ?', [id],(err, recomendaciones) => {
+            if(err)
+            {
+                res.json(err);
+            }
+
+            console.log('mensaje x');
+            console.log(recomendaciones);
+            console.log(recomendaciones.length);
+
+            /*for(var i= 0; i < recomendaciones.length; i++)
+            {
+
+
+            }*/
+
+            return res.status(200).send({ recomendaciones });
+            
+        
+
+        });
+    });
+
+
+   
+}
+
+controller.insertRecommendation = (req, res) => {
+    
+    console.log(req.body);
+    const data = req.body;
+    console.log("-------------");
+    console.log(data);
+    req.getConnection((err, conn) => {
+        conn.query('INSERT INTO recommendations set ?',[data], (err, rows) => {
+            console.log(rows);
+            //res.send('works');
+            return res.status(200).send({rows});
+            });
+        });
+    }
 
 
 
