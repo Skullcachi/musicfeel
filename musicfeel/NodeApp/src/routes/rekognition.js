@@ -16,7 +16,11 @@ router.post('/', function(req, res, next) {
   
   
   };
-    AWS.config.update({region:'us-east-1'});
+    AWS.config.update({
+      secretAccessKey: 'WqDGD2heDMiJw+7X+fWT0iCCuMxp3LXTPX/ah579',
+      accessKeyId: 'AKIA56UO5V65PCD4DENS',
+      region: 'us-east-1'
+    });
     var rekognition = new AWS.Rekognition();
     rekognition.detectFaces(params, function(err, data) {
     if (err) console.log(err, err.stack); // an error occurred

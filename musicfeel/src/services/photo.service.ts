@@ -14,19 +14,23 @@ export class PhotoService {
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
-  public upload(photo)
+  public upload(photo: File)
   {
-    this.httpOptions = {
-			headers: new HttpHeaders({
-			'Accept':  'application/json',
-			'Content-Type': 'application/json'
-			})
-		};
     console.log("Photo: " + photo);
-    return this.httpClient.post(this.apiURL + 'file-upload',
-    {
-      image : photo,
-    }, this.httpOptions)
+    var formData = new FormData();
+    formData.append('image', photo, photo.name);
+    console.log("FormData get: " + formData.has("image"));
+    /* for (var pair of formData.()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+  } */
+    console.log("Nombre del archivo: " + photo.name)
+    return this.httpClient.post(this.apiURL + 'file-upload', formData)
+    .pipe( catchError(this.handleError));
+  }
+
+  public rekognition(photo_id)
+  {
+    return this.httpClient.post(this.apiURL + 'rekognition', { name : photo_id })
     .pipe( catchError(this.handleError));
   }
 
