@@ -48,7 +48,7 @@ controller.login = (req, res) => {
             let ok = "ok";
             if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
             {
-                res.status(200).send(usuarios[0].id);
+                //res.status(200).send(usuarios[0].id);
                 console.log(usuarios[0].id);
                 let user_id = usuarios[0].id;
                 console.log("entro a la condicion de cristian");
@@ -82,9 +82,10 @@ controller.update = (req, res) => {
 }
 
 controller.getRecommendations = (req, res) => {
+    console.log(req.params)
 const id = req.params.id;
     
-    //console.log(id);
+    console.log("user_id" + id);
     req.getConnection((err, conn) => {
         conn.query('Select * FROM recommendations where userid = ?', [id],(err, recomendaciones) => {
             if(err)

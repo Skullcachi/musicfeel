@@ -1,33 +1,73 @@
 <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <!-- Login form -->
         <div class="sidenav">
           <div class="login-main-text">
              <h2>MusicFeel<br> Dashboard</h2>
-             <p>Choose what to do</p>
+             <p>Here you can login into spotify and grant MusicFeel all the permissions to gather music recommendations for you.</p>
           </div>
        </div>
        <div class="main">
          <div class="row">
-           <div class="col-md-3">
+           <!-- <div class="col-md-3">
              <button class="btn btn-info" (click)="getWeather()">Get Weather</button>
-           </div>
-           <div class="col-md-3">
+           </div> -->
+           <!-- <div class="col-md-3">
              <button class="btn btn-info" (click)="uploadPhoto()">UploadPhoto</button>
-           </div>
+           </div> -->
+           
          </div>
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
               <div class="weather-container">
                 <h2>The current weather is: <span id="weather-value"></span></h2>
+                <br><br>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <h3>Login into Spotify: </h3>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-success" (click)="requestPermission()">Sign in</button>
+              <br><br>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <button class="btn btn-info" (click)="getHistory()">My recommendations</button>
+                  <br><br>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-dark table-striped table-responsive">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>album</th>
+                    <th>Open in spotify</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cells of rows;">
+                    <td>{{cells.id}}</td>
+                    <td>{{cells.name}}</td>
+                    <td>{{cells.album}}</td>
+                    <td><a [href]="cells.external_url" target="_blank"> {{cells.external_url}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
        </div>
+      </div>
+      <div class="col-md-2">
+        <br>
+        <button class="btn btn-danger" (click)="logOut()">Log out</button>
       </div>
     </div>
   </div>
