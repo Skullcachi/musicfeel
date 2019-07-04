@@ -16,6 +16,7 @@ class ImageSnippet {
 export class UploadImageComponent implements OnInit {
 
   selectedFile: ImageSnippet;
+  selectedFile2: File;
   constructor(
     private cdRef:ChangeDetectorRef,
     private photoService:PhotoService,
@@ -44,30 +45,29 @@ export class UploadImageComponent implements OnInit {
       this.selectedFile = new ImageSnippet(event.target.result, file);
       this.selectedFile.pending = true;
       
-      console.log(this.selectedFile.src);
+      this.selectedFile2 = file;
       this.cdRef.detectChanges();
       console.log(document.getElementById("userImage"));
       document.getElementById("userImage").style.width = "800px";
       (document.getElementById("userImage") as HTMLImageElement).src = this.selectedFile.src;
       this.onSuccess();
 
-      /* this.imageService.uploadImage(this.selectedFile.file).subscribe(
-        (res) => {
-        
-        },
-        (err) => {
-        
-        }) */
     });
 
     reader.readAsDataURL(file);
   }
-  uploadPhoto()
+  onSubmit()
   {
-    this.photoService.upload(this.selectedFile).subscribe((res)=>{
+    this.photoService.upload(this.selectedFile2).subscribe((res)=>{
       console.log(res);
       console.log("image uploaded succesfully.");
-      /* this.route.navigate(["/dashboard"]); */
+      /* this.route.navigate(["/rekognition"]); */
+      console.log("Obteniendo emociones");
+      this.photoService.rekognition(res).subscribe((res)=>{
+          console.log(res["emotion"]);
+      }, (err) => {
+        console.log(err);
+      });
     }, (err) => {
       console.log(err);
     });
