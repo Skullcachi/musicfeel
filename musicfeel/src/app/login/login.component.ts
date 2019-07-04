@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       console.log(formData);
       this.loginService.login(formData.username, formData.password).subscribe((res)=>{
         console.log(res);
+        localStorage.setItem("user_id", res["user_id"]);
         console.log("User logged in succesfully.");
         this.route.navigate(["/dashboard"]);
       }, (err) => {
