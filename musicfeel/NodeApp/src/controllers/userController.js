@@ -108,9 +108,6 @@ const id = req.params.id;
 
         });
     });
-
-
-   
 }
 
 controller.insertRecommendation = (req, res) => {
