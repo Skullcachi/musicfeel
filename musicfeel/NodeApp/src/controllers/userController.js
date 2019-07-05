@@ -24,7 +24,6 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO user set ?',[data], (err, rows) => {
             console.log(rows);
-            //res.send('works');
             return res.status(200).send({
                 rows
             });
@@ -39,26 +38,41 @@ controller.login = (req, res) => {
     req.getConnection((err, conn) =>{
 
         //SELECT column1, column2, ...FROM table_name WHERE condition;
+        console.log(req.body.username);
         conn.query('Select id, username, password FROM user where username = ?', [req.body.username],(err, usuarios) => {
             if(err)
             {
+                console.log("Hubo error");
                 res.json(err);
             }
+            console.log("Bien");
             console.log(usuarios);
             let ok = "ok";
-            if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
+
+            if(usuarios == '')
             {
-                //res.status(200).send(usuarios[0].id);
-                console.log(usuarios[0].id);
-                let user_id = usuarios[0].id;
-                console.log("entro a la condicion de cristian");
-                return res.status(200).send({ user_id });
+                console.log("Es nulo");
             }
-            else
-            {
-                console.log('Contraseña Error');
-                return res.status(400).send('Contraseña Erronea');
-            }
+                
+
+                if(usuarios != '')
+                {
+                    if(usuarios[0].username == req.body.username && usuarios[0].password == req.body.password)
+                    {
+                        //res.status(200).send(usuarios[0].id);
+                        console.log("Encontro");
+                        console.log(usuarios[0].id);
+                        let user_id = usuarios[0].id;
+                        console.log("entro a la condicion de cristian");
+                        return res.status(200).send({ user_id });
+                    }
+                }
+            
+                else
+                {
+                    console.log('Contraseña Error');
+                    return res.status(400).send('Contraseña Erronea');
+                }
 
         });
      });
@@ -93,7 +107,7 @@ const id = req.params.id;
                 res.json(err);
             }
 
-            console.log('mensaje x');
+            
             console.log(recomendaciones);
             console.log(recomendaciones.length);
 
@@ -115,7 +129,6 @@ controller.insertRecommendation = (req, res) => {
     
     console.log(req.body);
     const data = req.body;
-    console.log("-------------");
     console.log(data);
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO recommendations set ?',[data], (err, rows) => {
