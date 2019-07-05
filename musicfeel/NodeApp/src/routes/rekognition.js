@@ -17,8 +17,8 @@ router.post('/', function(req, res, next) {
   
   };
     AWS.config.update({
-      secretAccessKey: 'WqDGD2heDMiJw+7X+fWT0iCCuMxp3LXTPX/ah579',
-      accessKeyId: 'AKIA56UO5V65PCD4DENS',
+      secretAccessKey: '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',
+      accessKeyId: 'AKIA56UO5V65F2PJRZ5Q',
       region: 'us-east-1'
     });
     var rekognition = new AWS.Rekognition();
