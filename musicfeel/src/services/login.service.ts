@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  apiURL: string = 'http://localhost:3000/';
+  APIEndpoint = environment.APIEndpoint;
+  //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +24,7 @@ export class LoginService {
 		};
     console.log("Usuario: " + username)
     console.log("Password: " + password)
-    return this.httpClient.post(this.apiURL + 'login',
+    return this.httpClient.post(this.APIEndpoint + 'login',
     {
       username : username,
       password : password
