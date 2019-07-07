@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from './../environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,8 @@ import { throwError } from 'rxjs';
 export class PhotoService {
 
   
-  apiURL: string = 'http://localhost:3000/';
+  APIEndpoint = environment.APIEndpoint;
+  //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
@@ -24,13 +26,13 @@ export class PhotoService {
       console.log(pair[0]+ ', ' + pair[1]); 
   } */
     console.log("Nombre del archivo: " + photo.name)
-    return this.httpClient.post(this.apiURL + 'file-upload', formData)
+    return this.httpClient.post(this.APIEndpoint + 'file-upload', formData)
     .pipe( catchError(this.handleError));
   }
 
   public rekognition(photo_id)
   {
-    return this.httpClient.post(this.apiURL + 'rekognition', { name : photo_id })
+    return this.httpClient.post(this.APIEndpoint + 'rekognition', { name : photo_id })
     .pipe( catchError(this.handleError));
   }
 
