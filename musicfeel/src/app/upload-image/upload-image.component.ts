@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { PhotoService } from 'src/services/photo.service';
 import { Router } from '@angular/router';
+import { RecommendationService } from 'src/services/recommendation.service';
 
 class ImageSnippet {
   pending: boolean = false;
@@ -20,7 +21,8 @@ export class UploadImageComponent implements OnInit {
   constructor(
     private cdRef:ChangeDetectorRef,
     private photoService:PhotoService,
-    private route:Router) { }
+    private route:Router,
+    private recommendations:RecommendationService) { }
 
   ngOnInit() {
   }
@@ -56,8 +58,12 @@ export class UploadImageComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
+  isLoading = false;
   onSubmit()
   {
+    this.isLoading = true;
+    
+    localStorage.removeItem("emotion");
     this.photoService.upload(this.selectedFile2).subscribe((res)=>{
       console.log(res);
       console.log("image uploaded succesfully.");
@@ -65,11 +71,47 @@ export class UploadImageComponent implements OnInit {
       console.log("Obteniendo emociones");
       this.photoService.rekognition(res).subscribe((res)=>{
           console.log(res["emotion"]);
+          localStorage.setItem("emotion", res["emotion"]);
+          console.log("Obteniendo recomendaciones");
+          this.recommendations.getRecommendations(localStorage.getItem("emotion"), localStorage.getItem("weather"), localStorage.getItem("access_token")).subscribe((res) => {
+            console.log("Recomendaciones" + res);
+            let recommended = 
+            {
+              "name": res["tracks"]["0"].name,
+              "external_url": res["tracks"]["0"].external_urls.spotify,
+              "album": res["tracks"]["0"].album.album_type,
+              "href": res["tracks"]["0"].href,
+              "userid": localStorage.getItem("user_id"),
+              "emotion": localStorage.getItem("emotion"),
+              "weather": localStorage.getItem("weather")
+            }
+            console.log(recommended);
+            this.recommendations.storeRecommendation(recommended).subscribe((res)=>{
+              
+            this.isLoading = true;
+            this.route.navigate(["/dashboard"]);
+            }, (err)=>{
+              
+                this.isLoading = false;
+            })
+          },
+          (err) => {
+            
+            this.isLoading = false;
+          });
       }, (err) => {
+        this.isLoading = false;
         console.log(err);
       });
     }, (err) => {
+      this.isLoading = false;
       console.log(err);
     });
+  }
+
+  
+  back()
+  {   
+    this.route.navigate(['dashboard'])
   }
 }
