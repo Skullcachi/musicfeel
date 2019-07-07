@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  apiURL: string = 'http://localhost:3000/';
+  APIEndpoint = environment.APIEndpoint;
+  //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
@@ -20,7 +22,7 @@ export class WeatherService {
 			'Content-Type': 'application/json'
 			})
 		};
-    return this.httpClient.get(this.apiURL + 'api/getCurrentWeather', this.httpOptions)
+    return this.httpClient.get(this.APIEndpoint + 'api/getCurrentWeather', this.httpOptions)
     .pipe( catchError(this.handleError));
   }
   

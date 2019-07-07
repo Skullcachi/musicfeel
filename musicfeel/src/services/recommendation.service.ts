@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecommendationService {
 
-  apiURL: string = 'http://localhost:3000/';
+  APIEndpoint = environment.APIEndpoint;
+  //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
 
@@ -21,7 +23,7 @@ export class RecommendationService {
 			'Content-Type': 'application/json'
 			})
 		};
-    return this.httpClient.get(this.apiURL + 'getRecommendations/' + user_id, this.httpOptions)
+    return this.httpClient.get(this.APIEndpoint + 'getRecommendations/' + user_id, this.httpOptions)
     .pipe( catchError(this.handleError));
   }
 
@@ -34,7 +36,7 @@ export class RecommendationService {
       'Access-Control-Allow-Origin':'*',
 			})
 		};
-    return this.httpClient.post(this.apiURL + 'insertRecommendation',
+    return this.httpClient.post(this.APIEndpoint + 'insertRecommendation',
     {
       album : recommendations.album,
       external_url : recommendations.external_url,
@@ -42,7 +44,7 @@ export class RecommendationService {
       name : recommendations.name,
       userid : recommendations.userid,
       emotion: recommendations.emotion,
-      weather: localStorage.weather
+      weather: recommendations.weather
     }, this.httpOptions)
     .pipe( catchError(this.handleError));
   }
