@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  APIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/'
+  APIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
+  SpotifyAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:4200/'
 };
 
 /*

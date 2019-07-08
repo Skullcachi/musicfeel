@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherService } from 'src/services/weather.service';
 import { RecommendationService } from 'src/services/recommendation.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { RecommendationService } from 'src/services/recommendation.service';
 export class DashboardComponent implements OnInit {
 
   getWeatherFunc;
+  SpotifyAPIEndpoint = environment.SpotifyAPIEndpoint;
 
   constructor(
     private weatherService:WeatherService,
@@ -93,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
   requestPermission()
   {
-    window.open(`https://accounts.spotify.com/authorize?response_type=token&client_id=7c2e7bd93be84d6abd457e43f2152860&scope=user-read-private%20user-read-email&redirect_uri=${encodeURIComponent("http://localhost:4200/spotify")}&state=${this.generateRandomString(16)}`, "_blank");
+    window.open(`https://accounts.spotify.com/authorize?response_type=token&client_id=7c2e7bd93be84d6abd457e43f2152860&scope=user-read-private%20user-read-email&redirect_uri=${encodeURIComponent(this.SpotifyAPIEndpoint+"spotify")}&state=${this.generateRandomString(16)}`, "_blank");
 
     /* this.recommendationService.getPermission().subscribe((res)=> {
       console.log(res);
