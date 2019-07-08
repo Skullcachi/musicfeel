@@ -11,7 +11,8 @@ import { environment } from './../environments/environment';
 export class PhotoService {
 
   
-  APIEndpoint = environment.APIEndpoint;
+  FileUploadAPIEndpoint = environment.FileUploadCRUDAPIEndPoint;
+  RekognitionAPIEndpoint = environment.RekognitionCRUDAPIEndPoint;
   //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
@@ -26,13 +27,13 @@ export class PhotoService {
       console.log(pair[0]+ ', ' + pair[1]); 
   } */
     console.log("Nombre del archivo: " + photo.name)
-    return this.httpClient.post(this.APIEndpoint + 'file-upload', formData)
+    return this.httpClient.post(this.FileUploadAPIEndpoint + 'file-upload', formData)
     .pipe( catchError(this.handleError));
   }
 
   public rekognition(photo_id)
   {
-    return this.httpClient.post(this.APIEndpoint + 'rekognition', { name : photo_id })
+    return this.httpClient.post(this.RekognitionAPIEndpoint + 'rekognition', { name : photo_id })
     .pipe( catchError(this.handleError));
   }
 

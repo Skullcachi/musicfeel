@@ -9,7 +9,7 @@ import { environment } from './../environments/environment';
 })
 export class WeatherService {
 
-  APIEndpoint = environment.APIEndpoint;
+  APIEndpoint = environment.WeatherAPIEndPoint;
   //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }

@@ -5,7 +5,14 @@
 export const environment = {
   production: false,
   /* APIEndpoint: 'http://localhost:3000/', */
-  APIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
+  CRUDAPIEndPoint: '10.0.1.207:80/',
+  WeatherAPIEndPoint: '10.0.1.207:88/',
+  RekognitionCRUDAPIEndPoint: '10.0.1.207:8000/',
+  FileUploadCRUDAPIEndPoint: '10.0.1.207:8888/',
+  //APIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
+  /* CRUDAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
+  RekognitionAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
+  fileUploadAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',*/
   SpotifyAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:4200/'
   /* SpotifyAPIEndpoint: 'http://localhost:4200/' */
 };
