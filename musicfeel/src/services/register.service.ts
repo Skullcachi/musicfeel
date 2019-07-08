@@ -9,7 +9,7 @@ import { environment } from './../environments/environment';
 })
 export class RegisterService {
 
-  APIEndpoint = environment.APIEndpoint;
+  APIEndpoint = environment.CRUDAPIEndPoint;
   //apiURL: string = 'http://localhost:3000/';
 	httpOptions: any;
   constructor(private httpClient: HttpClient) { }
