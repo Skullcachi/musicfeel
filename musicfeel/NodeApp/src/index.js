@@ -22,11 +22,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(myConnection(mysql, {
-    host: 'localhost',
+    host: 'dbapitestinstance.ckfmsq2mab92.us-east-2.rds.amazonaws.com',
+    user: 'root',
+    password: 'rootroot',
+    port: 3306,
+    database: 'musicFeelLocal'
+    /* host: 'localhost',
     user: 'root',
     password: '',
     port: 3306,
-    database: 'musicFeelLocal'
+    database: 'musicFeelLocal' */
 }, 'single'));
 
 app.use(cors());

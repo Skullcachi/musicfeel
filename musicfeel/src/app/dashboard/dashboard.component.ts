@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
   requestPermission()
   {
-    window.open(`https://accounts.spotify.com/authorize?response_type=token&client_id=7c2e7bd93be84d6abd457e43f2152860&scope=user-read-private%20user-read-email&redirect_uri=${encodeURIComponent(this.SpotifyAPIEndpoint)}spotify&state=${this.generateRandomString(16)}`, "_blank");
+    window.open(`https://accounts.spotify.com/authorize?response_type=token&client_id=7c2e7bd93be84d6abd457e43f2152860&scope=user-read-private%20user-read-email&redirect_uri=${encodeURI(this.SpotifyAPIEndpoint)}spotify&state=${this.generateRandomString(16)}`, "_blank");
 
     /* this.recommendationService.getPermission().subscribe((res)=> {
       console.log(res);
