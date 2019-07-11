@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   /* APIEndpoint: 'http://localhost:3000/', */
-  CRUDAPIEndPoint: '10.0.1.207:80/',
-  WeatherAPIEndPoint: '10.0.1.207:88/',
-  RekognitionCRUDAPIEndPoint: '10.0.1.207:8000/',
-  FileUploadCRUDAPIEndPoint: '10.0.1.207:8888/',
+  CRUDAPIEndPoint: 'musicfeel-publico-1048611273.us-east-2.elb.amazonaws.com:80/',
+  WeatherAPIEndPoint: 'musicfeel-publico-1048611273.us-east-2.elb.amazonaws.com:88/',
+  RekognitionCRUDAPIEndPoint: 'musicfeel-publico-1048611273.us-east-2.elb.amazonaws.com:8000/',
+  FileUploadCRUDAPIEndPoint: 'musicfeel-publico-1048611273.us-east-2.elb.amazonaws.com:8888/',
   //APIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
   /* CRUDAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
   RekognitionAPIEndpoint: 'http://ec2-52-14-238-78.us-east-2.compute.amazonaws.com:3000/',
